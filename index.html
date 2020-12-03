@@ -4,40 +4,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        /* html {
-            font-size: 20px;
-        } */
-        @media screen and (min-width: 320px) {
-            html {
-                font-size: 50px;
-            }
-        }
-
-        @media screen and (min-width: 640px) {
-            html {
-                font-size: 100px;
-            }
-        }
-
-        @media screen and (min-width: 1280px) {
-            html {
-                font-size: 150px;
-            }
-        }
-
-        .top {
-            height: 1rem;
-            font-size: .5rem;
-            background-color: green;
-            color: #fff;
-        }
-    </style>
+    <title>数据可视化</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
 </head>
 
 <body>
-    <div class="top">购物车</div>
+    <!-- 头部盒子 -->
+    <header>
+        <h1>数据监控云平台</h1>
+        <div class="showTime"></div>
+    </header>
+    <!-- 页面主体部分 -->
+    <section class="mainbox">
+        <div class="column">
+            <div class="panel bar">
+                <h2>最近七天用电量 KW·h</h2>
+                <div class="chart"></div>
+                <div class="panel-footer"></div>
+            </div>
+            <div class="panel line">
+                <h2>实时电压监测</h2>
+                <div class="chart"></div>
+                <div class="panel-footer"></div>
+            </div>
+            <div class="panel pie">
+                <h2>标题</h2>
+                <div class="chart"></div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+        <div class="column">
+            <!-- 数据展示模块 -->
+            <div class="datas">
+                <div class="data-1">
+                    <div class="data-hd">
+                        <ul>
+                            <li class="data4" id="meter1">
+                                <h4>电表 -- 1</h4>
+                                <div>
+                                    <span>电压</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>电流</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>功率</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>电量</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                            </li>
+                            <li class="data5" id="meter2">
+                                <h4>电表 -- 2</h4>
+                                <div>
+                                    <span>电压</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>电流</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>功率</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>电量</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="data-2">
+                    <div class="data-hd">
+                        <ul>
+                            <li class="data6" id="meter3">
+                                <h4>电表 -- 3</h4>
+                                <div>
+                                    <span>电压</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>电流</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>功率</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>电量</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                            </li>
+                            <li class="data7" id="meter4">
+                                <h4>电表 -- 4</h4>
+                                <div>
+                                    <span>电压</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>电流</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>功率</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>电量</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="data-3">
+                    <div class="data-hd">
+                        <ul>
+                            <li class="data8" id="meter5">
+                                <h4>电表 -- 5</h4>
+                                <div>
+                                    <span>电压</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>电流</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>功率</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>电量</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                            </li>
+                            <li class="data9" id="meter6">
+                                <h4>电表 -- 6</h4>
+                                <div>
+                                    <span>电压</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>电流</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>功率</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                                <div>
+                                    <span>电量</span>
+                                    <span class="dataval">123</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="panel bar2">
+                <h2>标题</h2>
+                <div class="chart"></div>
+                <div class="panel-footer"></div>
+            </div>
+            <div class="panel line2">
+                <h2>标题</h2>
+                <div class="chart"></div>
+                <div class="panel-footer"></div>
+            </div>
+            <div class="panel pie2">
+                <h2>标题</h2>
+                <div class="chart"></div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        var t = null;
+        t = setTimeout(time, 1000); //開始运行
+        function time() {
+            clearTimeout(t); //清除定时器
+            dt = new Date();
+            var y = dt.getFullYear();
+            var mt = dt.getMonth() + 1;
+            var day = dt.getDate();
+            var h = dt.getHours(); //获取时
+            var m = dt.getMinutes(); //获取分
+            var s = dt.getSeconds(); //获取秒
+            document.querySelector(".showTime").innerHTML = '当前时间：' + y + "年" + mt + "月" + day + "日" + "-" + h + "时" +
+                m + "分" + s + "秒";
+            t = setTimeout(time, 1000); //设定定时器，循环运行     
+        }
+    </script>
+    <script src="js/flexible.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>
